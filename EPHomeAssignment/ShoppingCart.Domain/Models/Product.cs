@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace ShoppingCart.Domain.Model
+namespace ShoppingCart.Domain.Models
 {
     public class Product
     {
         [Key]
         public Guid Id { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please fill out this form")]
         public string Name { get; set; }
         [Required]
         public double Price { get; set; }

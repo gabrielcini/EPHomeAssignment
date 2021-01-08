@@ -1,6 +1,6 @@
 ﻿using ShoppingCart.Data.Context;
 using ShoppingCart.Domain.Interfaces;
-using ShoppingCart.Domain.Model;
+using ShoppingCart.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

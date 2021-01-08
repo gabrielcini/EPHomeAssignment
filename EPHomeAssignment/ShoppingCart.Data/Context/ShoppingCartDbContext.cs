@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using ShoppingCart.Domain.Model;
 using ShoppingCart.Domain.Models;
 
 namespace ShoppingCart.Data.Context

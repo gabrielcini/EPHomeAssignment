@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using ShoppingCart.Data.Context;
 using ShoppingCart.Domain.Interfaces;
-using ShoppingCart.Domain.Model;
+using ShoppingCart.Domain.Models;
 
 namespace ShoppingCart.Data.Repositories
 {

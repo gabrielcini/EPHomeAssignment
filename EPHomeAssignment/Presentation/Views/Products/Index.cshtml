@@ -4,8 +4,37 @@
 }
 
 <h1>Products Catalogue</h1>
+<div class="col-md-10">
+    @{
+        List<SelectListItem> listItems = new List<SelectListItem>();
+
+        @foreach (var product in Model)
+        {
+            listItems.Add(new SelectListItem
+            {
+                Text = @product.Category.Name,
+                Value = @product.Category.Name
+            });
+        }
+    }
+
+    <!--@Html.DropDownList("categoryFilter", listItems, new { @class = "form-control" })-->
+
+    
+
+
+</div>
 
 <div class="container">
+    <div class="form-group">
+        <label class="control-label">Filter Category: </label>
+        <select id="chosenCategory" class="chosen-select" style="width:350px;" tabindex="2">
+            @foreach (var product in Model)
+            {
+                <option value="@product.Category.Name">@product.Category.Name</option>
+            }
+        </select>
+    </div>
     <div class="row">
         @foreach (var product in Model)
         {

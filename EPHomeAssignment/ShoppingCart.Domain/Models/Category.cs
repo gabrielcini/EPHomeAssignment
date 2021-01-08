@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace ShoppingCart.Domain.Model
+namespace ShoppingCart.Domain.Models
 {
     public class Category
     {

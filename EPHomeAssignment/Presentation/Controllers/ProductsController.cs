@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Models;
 using ShoppingCart.Application.Interfaces;
 using ShoppingCart.Application.ViewModels;
 
@@ -44,13 +45,16 @@ namespace Presentation.Controllers
         {
             var catList = _categoriesService.GetCategories();
 
-            ViewBag.Categories = catList;
+            //ViewBag.Categories = catList;
 
-            return View(); //model => ProductViewModel
+            CreateProductModel model = new CreateProductModel();
+            model.Categories = catList.ToList();
+
+            return View(model); //model => ProductViewModel
         }
         [HttpPost] //the post method is called when the user clicks on the submit button
         [Authorize(Roles = "Admin")]
-        public IActionResult Create(ProductViewModel data, IFormFile file)
+        public IActionResult Create(CreateProductModel data, IFormFile file)
         {
             //validation
             try
@@ -68,13 +72,11 @@ namespace Presentation.Controllers
                             file.CopyTo(stream);
                         }
 
-                        data.ImageUrl = @"\Images\" + newFilename; //relativePath
+                        data.Product.ImageUrl = @"\Images\" + newFilename; //relativePath
                     }
                 }
 
-
-
-                _productsService.AddProduct(data);
+                _productsService.AddProduct(data.Product);
 
                 ViewData["feedback"] = "Product was added successfully";
                 ModelState.Clear();
@@ -84,7 +86,10 @@ namespace Presentation.Controllers
                 ViewData["warning"] = "Product was not added. Check your details";
             }
 
-            return View();
+            CreateProductModel model = new CreateProductModel();
+            model.Categories = _categoriesService.GetCategories().ToList();
+
+            return View(model);
         }
         public IActionResult Delete(Guid id)
         {

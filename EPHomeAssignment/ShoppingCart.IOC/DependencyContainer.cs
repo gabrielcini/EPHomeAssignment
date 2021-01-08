@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ShoppingCart.Application.AutoMapper;
 using ShoppingCart.Application.Interfaces;
 using ShoppingCart.Application.Services;
 using ShoppingCart.Data.Context;
@@ -27,6 +29,10 @@ namespace ShoppingCart.IOC
 
             services.AddScoped<IMembersRepository, MembersRepository>();
             services.AddScoped<IMembersService, MembersService>();
+
+            services.AddAutoMapper(typeof(AutoMapperConfiguration));
+            AutoMapperConfiguration.RegisterMappings();
+
         }
     }
 }

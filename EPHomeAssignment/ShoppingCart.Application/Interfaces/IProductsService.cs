@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ShoppingCart.Application.ViewModels;
-using ShoppingCart.Domain.Model;
+using ShoppingCart.Domain.Models;
 
 namespace ShoppingCart.Application.Interfaces
 {
