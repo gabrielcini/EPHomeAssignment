@@ -16,7 +16,6 @@ namespace ShoppingCart.Domain.Models
         [ForeignKey("Order")]
         public Guid OrderFK { get; set; }
         public virtual Order Order { get; set; }
-
         public int Quantity { get; set; }
         public double Price { get; set; }
     }

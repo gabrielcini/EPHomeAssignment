@@ -15,6 +15,6 @@ namespace Presentation.Models
     public class ListProductModel
     {
         public List<CategoryViewModel> Categories { get; set; }
-        public ProductViewModel Products { get; set; }
+        public List<ProductViewModel> Products { get; set; }
     }
 }

@@ -31,6 +31,9 @@ namespace Presentation.Controllers
         public IActionResult Index()
         {
             var list = _productsService.GetProducts();
+
+            int? pageNumber;
+
             return View(list);
         }
         public IActionResult Details(Guid id)
@@ -41,6 +44,7 @@ namespace Presentation.Controllers
         }
         [HttpGet] //the get method which will load with blank fields
         [Authorize(Roles = "Admin")]
+
         public IActionResult Create()
         {
             var catList = _categoriesService.GetCategories();
@@ -52,6 +56,7 @@ namespace Presentation.Controllers
 
             return View(model); //model => ProductViewModel
         }
+
         [HttpPost] //the post method is called when the user clicks on the submit button
         [Authorize(Roles = "Admin")]
         public IActionResult Create(CreateProductModel data, IFormFile file)
@@ -84,6 +89,9 @@ namespace Presentation.Controllers
             catch(Exception ex)
             {
                 ViewData["warning"] = "Product was not added. Check your details";
+
+                TempData["error"] = "Product was not added";
+                return RedirectToAction("Error", "Home");
             }
 
             CreateProductModel model = new CreateProductModel();

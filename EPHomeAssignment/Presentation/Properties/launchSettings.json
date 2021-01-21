@@ -8,7 +8,7 @@
     },
     "iisExpress": {
       "applicationUrl": "http://localhost:50148",
-      "sslPort": 44319
+      "sslPort": 0
     }
   },
   "profiles": {
@@ -34,6 +34,15 @@
         "ASPNETCORE_ENVIRONMENT": "Production"
       },
       "applicationUrl": "http://localhost:50156"
+    },
+    "RemoteDbApp": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      },
+      "sqlDebugging": true,
+      "nativeDebugging": true
     }
   }
 }

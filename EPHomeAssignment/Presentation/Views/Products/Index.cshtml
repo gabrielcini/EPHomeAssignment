@@ -2,45 +2,25 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <h1>Products Catalogue</h1>
-<div class="col-md-10">
-    @{
-        List<SelectListItem> listItems = new List<SelectListItem>();
-
-        @foreach (var product in Model)
-        {
-            listItems.Add(new SelectListItem
-            {
-                Text = @product.Category.Name,
-                Value = @product.Category.Name
-            });
-        }
-    }
-
-    <!--@Html.DropDownList("categoryFilter", listItems, new { @class = "form-control" })-->
-
-    
-
-
-</div>
 
 <div class="container">
-    <div class="form-group">
-        <label class="control-label">Filter Category: </label>
-        <select id="chosenCategory" class="chosen-select" style="width:350px;" tabindex="2">
+    <div class="row">
+        <select id="CategoryForm" name="CategoryForm" class="chosen-select">
             @foreach (var product in Model)
             {
                 <option value="@product.Category.Name">@product.Category.Name</option>
             }
         </select>
     </div>
+
     <div class="row">
         @foreach (var product in Model)
         {
             <div class="card" style="width: 18rem;">
                 <img src="@product.ImageUrl" class="card-img-top card-image" alt="@product.Name">
                 <div class="card-body">
+                    <h5>@product.SelectedCategory</h5>
                     <h5 class="card-title">@product.Name</h5>
                     <p class="card-text">€@product.Price</p>
                     <a href="/Products/Details?id=@product.Id" class="btn btn-primary">View Specifications</a>
