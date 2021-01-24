@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Presentation.Models;
 using ShoppingCart.Application.Interfaces;
 using ShoppingCart.Application.ViewModels;
@@ -28,13 +29,28 @@ namespace Presentation.Controllers
         /// Products Catalogue
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             var list = _productsService.GetProducts();
 
-            int? pageNumber;
+            ViewData["CurrentSort"] = sortOrder;
 
-            return View(list);
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var products = from s in list
+                           select s;
+
+            int pageSize = 10;
+            return View(await PaginatedList<ProductViewModel>.CreateAsync(products.AsNoTracking(), pageNumber ?? 1, pageSize));
+
+            //return View(list);
         }
         public IActionResult Details(Guid id)
         {
